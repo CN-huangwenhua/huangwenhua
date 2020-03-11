@@ -1,3 +1,4 @@
+@import './variables';
 * {
     box-sizing: border-box;
     outline: none;
@@ -19,16 +20,7 @@ a {
     color: #999;
 }
 
-$colors :(
-    "primary":#db9e3f,
-    "white":#fff,
-    "light":#f9f9f9,
-    "grey":#999,
-    "grey-1":#666,
-    "dark-1":#343440,
-    "dark":#212222,
-    "black":#000,
-);
+
 // color
 @each $colorKey,$color in  $colors{
     .text-#{$colorKey}{
@@ -45,15 +37,6 @@ $colors :(
   }
 }
 
-$base-font-size:1rem;
-$font-sizes:(
-    xxs:0.6154,  //8
-    xs:0.7692,  //10px
-    sm: 0.9231, //12px
-    md:1,
-    lg:1.0769,  //14px
-    xl:1.2308  //16px
-);
 
 @each $sizeKey,$size in $font-sizes {
     .fs-#{$sizeKey}{
@@ -74,14 +57,10 @@ $font-sizes:(
 .flex-column{
     flex-direction: column;
 }
+.flex-wrap{
+    flex-wrap:wrap;
+}
 
-$flex-jc:(
-    start:flex-start,
-    end:flex-end,
-    center:center,
-    between:space-between,
-    around:space-around,
-);
 
 @each $key,$value in $flex-jc {
     .jc-#{$key}{
@@ -89,12 +68,6 @@ $flex-jc:(
     }
 }
 
-$flex-ai:(
-    start:flex-start,
-    end:flex-end,
-    center:center,
-    stretch:stretch,
-);
 
 @each $key,$value in $flex-ai {
     .ai-#{$key}{
@@ -108,14 +81,6 @@ $flex-ai:(
 .flex-grow-1{
     flex-grow: 1;
 }
-
-$spacing-types:(
-    m:margin,
-    p:padding
-);
-$spacing-base-size:1rem;
-$spacing-directions:(t:top, r:right , b:bottom, l:left);
-$spacing-sizes:(0:0, 1:0.25, 2:0.5, 3:1, 4:1.5, 5:3);
 
 @each $typeKey, $type in  $spacing-types{
     //m-1
@@ -158,11 +123,38 @@ $spacing-sizes:(0:0, 1:0.25, 2:0.5, 3:1, 4:1.5, 5:3);
 
 //nav 
 .nav{
+    display: flex;
     .nav-item{
         border-bottom: 3px solid transparent;
         padding-bottom: 0.2rem;
         &.active {
-            border-bottom: 3px solid #fff;
+            color: map-get($colors,'primary' );
+            border-bottom-color:map-get($colors,'primary' );
         }
+    }
+    &.nav-inverse{
+        .nav-item{
+            color: map-get($colors,'white');
+            &.active{
+                border-bottom-color:map-get($colors,'white' );
+            }
+        }
+    }
+}
+
+//sprite
+.sprite{
+    background: url(../index.png) no-repeat 0 0;
+    background-size: 28.8462rem;
+    display:inline-block;
+    &.sprite-news {
+        width: 1.7692rem;
+        height: 1.5385rem;
+        background-position: 63.546% 15.517%;
+    }
+    &.sprite-arrow{
+        width: 0.7692rem;
+        height: 0.7692rem;
+        background-position: 38.577% 52.076%;
     }
 }
