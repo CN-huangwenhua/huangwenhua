@@ -13,9 +13,48 @@ const http = axios.create({
   baseURL:'http://localhost:3000/admin/api'
 })
 
+http.interceptors.request.use(function(config) {
+  if(localStorage.token){
+    config.headers.Authorization = 'Bearer ' + (localStorage.token || ' ')
+  }
+  return config;
+}, err => {
+  return Promise.reject(err);
+})
+
+http.interceptors.response.use(res => {
+  return res
+}, err => {
+  if(err.response.data.message){
+    Vue.prototype.$message({
+      type:'error',
+      message:err.response.data.message
+    })
+    if(err.response.status === 401){
+      router.push('/login')
+    }
+  }
+  return Promise.reject(err)
+})
+
 Vue.prototype.$http = http
 
 Vue.config.productionTip = false
+
+Vue.mixin({
+  computed: {
+    uploadUrl(){
+      return this.$http.defaults.baseURL + '/upload'
+    }
+  },
+  methods: {
+    getAuthHeaders(){
+      return {
+        Authorization:`Bearer ${localStorage.token || ''}`
+      }
+    }
+  },
+})
 
 Vue.use(ElementUI);
 /* eslint-disable no-new */
