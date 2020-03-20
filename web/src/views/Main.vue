@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="topbar bg-black py-2 px-3 d-flex ai-center">
+        <div class="topbar py-2 px-3 d-flex ai-center">
             <img src="../assets/logo.png" height="30">
             <div class="px-2 flex-1">
                 <div class="text-white">王者荣耀</div>
@@ -33,6 +33,9 @@ export default {
 
 <style lang="scss">
 .topbar{
+    background: url(../assets/index.png) no-repeat 0 87.195%;
+    width: 28.8462rem;
+    height: 3.4615rem;
     position: sticky;
     top: 0;
     z-index: 999;

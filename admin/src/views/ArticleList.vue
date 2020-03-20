@@ -4,7 +4,6 @@
         <el-table :data="items">
             <el-table-column prop="_id" label="ID" width='220'></el-table-column>
             <el-table-column prop="title" label="文章标题"></el-table-column>
-            <el-table-column prop="body" label="详情"></el-table-column>
             <el-table-column fixed="right" label="操作" wdith="180">
                 <template slot-scope="scope">
                     <el-button type="primary" size="small"
