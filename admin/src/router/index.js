@@ -27,7 +27,7 @@ const router = new Router({
     {path:'/login',name:'login',component:Login , meta:{isPublic:true}},
     {
       path: '/',
-      name: 'Main',
+      name: 'main',
       component: Main,
       children:[
         {path:'/categories/create',component:CategoryEdit},
@@ -58,7 +58,7 @@ const router = new Router({
   ]
 })
 router.beforeEach( (to, from, next) => {
-  if(to.matched.isPublic && !localStorage.token){
+  if(!to.meta.isPublic && !localStorage.token){
     return next('/login')
   }
   next()

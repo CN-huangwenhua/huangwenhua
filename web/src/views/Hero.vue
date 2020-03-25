@@ -44,7 +44,7 @@
             </div>
             <swiper>
                 <swiper-slide>
-                    <div>
+                    <div v-if="model">
                         <div class="p-3 bg-white border-bottom">
                             <div class="d-flex">
                                 <router-link tag="button" to="/" class="btn btn-lg flex-1">
@@ -146,6 +146,7 @@ export default {
     methods: {
         async fetch(){
             const res = await this.$http.get(`heroes/${this.id}`);
+            console.log(res.data.skills)
             this.model = res.data
         }
     },
